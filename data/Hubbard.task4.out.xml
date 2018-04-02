@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ALPS.xsl"?>
+<SIMULATION xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://xml.comp-phys.org/2002/10/ALPS.xsd">
+  <PARAMETERS>
+    <PARAMETER name="THERMALIZATION">20000</PARAMETER>
+    <PARAMETER name="NUMBER_EIGENVALUES">2</PARAMETER>
+    <PARAMETER name="T">1</PARAMETER>
+    <PARAMETER name="SWEEPS">60000</PARAMETER>
+    <PARAMETER name="SEED">0</PARAMETER>
+    <PARAMETER name="MODEL">fermion Hubbard</PARAMETER>
+    <PARAMETER name="U">80</PARAMETER>
+    <PARAMETER name="L">3</PARAMETER>
+    <PARAMETER name="h">0</PARAMETER>
+    <PARAMETER name="LATTICE">open square lattice</PARAMETER>
+    <PARAMETER name="LATTICE_LIBRARY">lattices.xml</PARAMETER>
+    <PARAMETER name="CONSERVED_QUANTUMNUMBERS"></PARAMETER>
+  </PARAMETERS>
+  <AVERAGES>
+    <SCALAR_AVERAGE name="Ground State Energy"><MEAN>-6.7471657936041316</MEAN></SCALAR_AVERAGE>
+    <SCALAR_AVERAGE name="Energy Gap"><MEAN>0.12885788284082178</MEAN></SCALAR_AVERAGE>
+  </AVERAGES>
+  <EIGENVALUES number="2">
+    -6.7471657936041316
+    -6.6183079107633098
+    
+  </EIGENVALUES>
+  <EIGENSTATES number="2">
+    <EIGENSTATE number="0">
+      <SCALAR_AVERAGE name="Energy"><MEAN>-6.7471657936041316</MEAN></SCALAR_AVERAGE>
+    </EIGENSTATE>
+    <EIGENSTATE number="1">
+      <SCALAR_AVERAGE name="Energy"><MEAN>-6.6183079107633098</MEAN></SCALAR_AVERAGE>
+    </EIGENSTATE>
+  </EIGENSTATES>
+</SIMULATION>

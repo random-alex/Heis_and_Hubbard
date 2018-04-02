@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ALPS.xsl"?>
+<SIMULATION xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://xml.comp-phys.org/2002/10/ALPS.xsd">
+  <PARAMETERS>
+    <PARAMETER name="NUMBER_EIGENVALUES">2</PARAMETER>
+    <PARAMETER name="local_S">0.5</PARAMETER>
+    <PARAMETER name="J">0.4</PARAMETER>
+    <PARAMETER name="L">3</PARAMETER>
+    <PARAMETER name="LATTICE">open square lattice</PARAMETER>
+    <PARAMETER name="SEED">0</PARAMETER>
+    <PARAMETER name="T">1</PARAMETER>
+    <PARAMETER name="MODEL">spin</PARAMETER>
+    <PARAMETER name="LATTICE_LIBRARY">lattices.xml</PARAMETER>
+    <PARAMETER name="h">0</PARAMETER>
+    <PARAMETER name="SWEEPS">60000</PARAMETER>
+    <PARAMETER name="THERMALIZATION">20000</PARAMETER>
+    <PARAMETER name="CONSERVED_QUANTUMNUMBERS"></PARAMETER>
+  </PARAMETERS>
+  <AVERAGES>
+    <SCALAR_AVERAGE name="Ground State Energy"><MEAN>-1.8997309034211487</MEAN></SCALAR_AVERAGE>
+    <SCALAR_AVERAGE name="Energy Gap"><MEAN>0.3962683624558001</MEAN></SCALAR_AVERAGE>
+  </AVERAGES>
+  <EIGENVALUES number="2">
+    -1.8997309034211487
+    -1.5034625409653486
+    
+  </EIGENVALUES>
+  <EIGENSTATES number="2">
+    <EIGENSTATE number="0">
+      <SCALAR_AVERAGE name="Energy"><MEAN>-1.8997309034211487</MEAN></SCALAR_AVERAGE>
+    </EIGENSTATE>
+    <EIGENSTATE number="1">
+      <SCALAR_AVERAGE name="Energy"><MEAN>-1.5034625409653486</MEAN></SCALAR_AVERAGE>
+    </EIGENSTATE>
+  </EIGENSTATES>
+</SIMULATION>
