@@ -41,11 +41,15 @@ df <- tibble(dirs = list.files(dir,pattern = 'task[0-9]{1}\\.out\\.xml|[0-9]{2}\
   
 
 df %>% 
-  filter(mod_param != 'L') %>% 
-  ggplot(aes(mod_value,value)) +
+  filter(mod_param != 'L'& parameter != 'Ground State Energy') %>% 
+  mutate(mod_value = ifelse(model == 'Heiz',
+                            as.numeric(4/as.numeric(mod_value)),
+                            as.numeric(mod_value))) %>% 
+  ggplot(aes(mod_value,value,col = model)) +
   geom_line() +
   geom_point() +
-  facet_grid(model~parameter) +
+  facet_grid(parameter ~ .) +
+  labs(y = 'Energy Gap', x = 'U and J') +
   theme_bw()
 
 
