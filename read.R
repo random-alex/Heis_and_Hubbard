@@ -4,10 +4,12 @@
 require(xml2)
 require(tidyverse)
 
-dir <- 'data/'
+dir <- 'data/chain_8_large/'
 
 
-fol <- 'data/Heiz.task1.out.xml'
+fol <- 'data/periodic_2/Heiz_periodic_2.task1.out.xml'
+
+
 
 
 # functions ---------------------------------------------------------------
@@ -38,7 +40,7 @@ df <- tibble(dirs = list.files(dir,pattern = 'task[0-9]{1}\\.out\\.xml|[0-9]{2}\
   unnest() %>% 
   select(-dirs) %>% 
   mutate(value = as.numeric(value))
-  
+
 
 df %>% 
   filter(mod_param != 'L'& parameter != 'Ground State Energy') %>% 
@@ -50,7 +52,46 @@ df %>%
   geom_point() +
   facet_grid(parameter ~ .) +
   labs(y = 'Energy Gap', x = 'U and J') +
+  # scale_y_log10() +
+  ggtitle('Cmparisson Heisenberg and Hubbard models for chain lattice with L = 8 ') +
   theme_bw()
+
+  
+#plot for square lattice 2 
+df %>% 
+  filter(mod_param != 'L'& parameter != 'Ground State Energy') %>% 
+  mutate(mod_value = ifelse(model == 'Heiz',
+                            as.numeric(8/as.numeric(mod_value)),
+                            as.numeric(mod_value))) %>% 
+  ggplot(aes(mod_value,value,col = model)) +
+  geom_line(position = position_dodge(10)) +
+  geom_point(position = position_dodge(10)) +
+  facet_grid(parameter ~ .) +
+  labs(y = 'Energy Gap', x = 'U and J') +
+  # scale_y_log10() +
+  theme_bw()
+
+
+x <- seq(1,70,by = 4)
+
+paste0(round(x,4),collapse = ' , ')
+paste0(round(4/x,4),collapse = ' , ')
+
+
+df %>% 
+  filter(mod_param != 'L'& parameter != 'Ground State Energy') %>% 
+  mutate(mod_value = ifelse(model == 'Heiz',
+                            as.numeric(4/as.numeric(mod_value)),
+                            as.numeric(mod_value))) %>% 
+  select(-mod_param) %>% 
+  spread(model,value) %>% 
+  ggplot(aes(mod_value,(Hubbard - Heiz)/Heiz)) +
+  geom_line() +
+  geom_point() +
+  facet_grid(parameter ~ .) +
+  labs(y = 'Energy Gap', x = 'U and J') +
+  theme_bw()
+
 
 
 
