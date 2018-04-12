@@ -53,8 +53,27 @@ df %>%
   facet_grid(parameter ~ .) +
   labs(y = 'Energy Gap', x = 'U and J') +
   # scale_y_log10() +
-  ggtitle('Cmparisson Heisenberg and Hubbard models for chain lattice with L = 8 ') +
+  ggtitle('Comparisson Heisenberg and Hubbard models for chain lattice with L = 8 ') +
   theme_bw()
+
+
+
+df %>% 
+  filter(mod_param != 'L'& parameter != 'Ground State Energy') %>% 
+  mutate(mod_value = ifelse(model == 'Heiz',
+                            round(as.numeric(4/as.numeric(mod_value))),
+                            as.numeric(mod_value))) %>% 
+  select(-mod_param) %>% 
+  spread(model,value) %>% 
+  ggplot(aes(mod_value,(Heiz - Hubbard)/Hubbard)) +
+  geom_line() +
+  geom_hline(aes(yintercept = 0)) +
+  geom_point() +
+  facet_grid(parameter ~ .) +
+  ggtitle('The drawn values are obtained using this formula: (Heiz - Hubbard)/Hubbard') +
+  labs(y = 'Energy Gap', x = 'U and J') +
+  theme_bw()
+
 
   
 #plot for square lattice 2 
@@ -78,21 +97,10 @@ paste0(round(x,4),collapse = ' , ')
 paste0(round(4/x,4),collapse = ' , ')
 
 
-df %>% 
+
+
+dd <- df %>% 
   filter(mod_param != 'L'& parameter != 'Ground State Energy') %>% 
   mutate(mod_value = ifelse(model == 'Heiz',
-                            as.numeric(4/as.numeric(mod_value)),
-                            as.numeric(mod_value))) %>% 
-  select(-mod_param) %>% 
-  spread(model,value) %>% 
-  ggplot(aes(mod_value,(Hubbard - Heiz)/Heiz)) +
-  geom_line() +
-  geom_point() +
-  facet_grid(parameter ~ .) +
-  labs(y = 'Energy Gap', x = 'U and J') +
-  theme_bw()
-
-
-
-
-
+                            round(as.numeric(4/as.numeric(mod_value))),
+                            as.numeric(mod_value)))
