@@ -70,8 +70,8 @@ df %>%
   geom_hline(aes(yintercept = 0)) +
   geom_point() +
   facet_grid(parameter ~ .) +
-  ggtitle('The drawn values are obtained using this formula: (Heiz - Hubbard)/Hubbard') +
-  labs(y = 'Energy Gap', x = 'U and J') +
+  # ggtitle('The drawn values are obtained using this formula: (Heiz - Hubbard)/Hubbard') +
+  labs(y = 'Delta', x = 'U и соотвествующий ему J') +
   theme_bw()
 
 
